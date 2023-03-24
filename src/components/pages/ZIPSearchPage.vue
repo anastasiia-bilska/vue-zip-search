@@ -107,7 +107,7 @@
           this.zipCodeLocal = data.postal;
 
           this.visibleCategories = [
-            { name: 'State', value: this.state },
+            { name: 'Region', value: this.state },
             { name: 'City', value: this.city },
             { name: 'Zip-code', value: this.zipCodeLocal },
             { name: 'Country', value: this.country },
