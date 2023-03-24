@@ -189,12 +189,13 @@
       Search by IP
     </button>
 
-    <button
+    <router-link
       class="py-2 px-4 rounded-md bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 transition text-white"
-      title="Go to the Homepage"
-      aria-label="click to go to the homepage"
+      to="/"
+      title="Go to Homepage"
+      aria-label="Go to Homepage"
     >
-      <router-link to="/">🏘️</router-link>
-    </button>
+      🏘️
+    </router-link>
   </div>
 </template>
