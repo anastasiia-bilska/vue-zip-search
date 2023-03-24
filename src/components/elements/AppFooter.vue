@@ -3,7 +3,7 @@
     <p>
       Made by
       <a
-        href=""
+        href="https://www.linkedin.com/in/anastasiia-bilska-08214a225/"
         target="_blank"
         class="underline text-indigo-500 hover:text-pink-500 transition"
       >
@@ -11,14 +11,14 @@
     </p>
 
     <a
-      href=""
+      href="https://github.com/anastasiia-bilska/vue-zip-search"
       target="_blank"
       class="underline text-indigo-500 hover:text-pink-500 transition"
     >
       Code
     </a>
     <a
-      href=""
+      href="https://drive.google.com/file/d/1gOQMPn07YmSbp538cD81bUw-Y-ovFbAV/view?usp=sharing"
       target="_blank"
       class="underline text-indigo-500 hover:text-pink-500 transition"
     >

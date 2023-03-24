@@ -1,9 +1,9 @@
 <script lang="ts">
   import axios from 'axios';
   import { debounce } from 'lodash';
-  import LoaderCircle from './LoaderCircle.vue';
-  import TabletContent from './TabletContent.vue';
-  import ErrorMessages from './ErrorMessages.vue';
+  import LoaderCircle from '../elements/LoaderCircle.vue';
+  import TabletContent from '../elements/TabletContent.vue';
+  import ErrorMessages from '../elements/ErrorMessages.vue';
 
   export default {
     components: {

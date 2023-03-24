@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import HomePage from '../components/HomePage.vue';
-import ZIPSearchButton from '../components/ZIPSearchPage.vue';
+import HomePage from '../components/pages/HomePage.vue';
+import ZIPSearchButton from '../components/pages/ZIPSearchPage.vue';
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
