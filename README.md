@@ -4,7 +4,7 @@
 
 A web app that searches for US zip-codes and provides information about the corresponding city and state. Additionally, the app can retrieve information about the user's location based on IP. The project was created with Vue, TypeScript, Vue-router, Tailwind, API, and other technologies.
 
-![Vue Zip Search Demo](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzY4N2IwMGNhMDVjYWU5ZmNhMTMxOTJlZGIwMDRkNWNlNWE5ZGFmOSZjdD1n/lHQmPb2nBDFpyDHspv/giphy.gif)
+![Vue Zip Search Demo](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzY4N2IwMGNhMDVjYWU5ZmNhMTMxOTJlZGIwMDRkNWNlNWE5ZGFmOSZjdD1n/lHQmPb2nBDFpyDHspv/giphy.gif)
 
 ## Built With
 
