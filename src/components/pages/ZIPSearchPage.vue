@@ -19,7 +19,7 @@
         city: '',
         country: '',
         isp: '',
-        errorMessages: [] as string[],
+        errorMessage: '',
         isLoading: false,
         userAgent: '',
         ip: '',
@@ -34,7 +34,7 @@
         this.city = '';
         this.country = '';
         this.isp = '';
-        this.errorMessages = [];
+        this.errorMessage = '';
         this.userAgent = '';
         this.ip = '';
         this.visibleCategories = [];
@@ -56,18 +56,21 @@
 
         const allowedSymbols = '0123456789';
 
-        if (this.zipCodeUS.length < 5) {
-          this.errorMessages.push('ZIP-code is too short')
-        }
-
-        if (this.zipCodeUS.length > 5) {
-          this.errorMessages.push('ZIP-code is too long')
-        }
-
         const isZipCodeValid = this.zipCodeUS.split('').every(symbol => allowedSymbols.includes(symbol));
 
         if (!isZipCodeValid) {
-          this.errorMessages.push('ZIP-code must include only numbers')
+          this.errorMessage = 'ZIP-code must include only numbers';
+          return;
+        }
+
+        if (this.zipCodeUS.length < 5) {
+          this.errorMessage = 'ZIP-code is too short';
+          return;
+        }
+
+        if (this.zipCodeUS.length > 5) {
+          this.errorMessage = 'ZIP-code is too long';
+          return;
         }
 
         try {
@@ -82,10 +85,10 @@
           this.visibleCategories = [
             { name: 'State', value: this.state },
             { name: 'City', value: this.city },
-            { name: 'Zip-code', value: this.zipCodeUS },
+            { name: 'ZIP-code', value: this.zipCodeUS },
           ];
         } catch (error) {
-          this.errorMessages.push('Something went wrong...');
+          this.errorMessage = 'Something went wrong...';
         } finally {
           this.isLoading = false;
         }
@@ -109,7 +112,7 @@
           this.visibleCategories = [
             { name: 'Region', value: this.state },
             { name: 'City', value: this.city },
-            { name: 'Zip-code', value: this.zipCodeLocal },
+            { name: 'ZIP-code', value: this.zipCodeLocal },
             { name: 'Country', value: this.country },
             { name: 'IP', value: this.ip },
             { name: 'ISP', value: this.isp },
@@ -124,8 +127,9 @@
             ]
           }
         } catch (error) {
-          this.errorMessages.push('Something went wrong...');
+          this.errorMessage = 'Something went wrong...';
         } finally {
+          // this.zipCodeUS = '';
           this.isLoading = false;
         }
       },
@@ -139,34 +143,27 @@
 </script>
 
 <template>
-  <h1 class="mb-8 text-6xl text-center font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-pink-600 leading-normal">Search ZIP-Code</h1>
+  <h1 class="mb-8 text-4xl md:text-5xl lg:text-6xl text-center font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-pink-600 leading-normal">Search ZIP-Code</h1>
 
   <form
     @submit.prevent="search"
-    :class="{'mb-7': isLoading || visibleCategories.length || errorMessages.length }"
+    class=""
   >
     <input
-      class="mr-6 rounded-md py-2 px-4 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-indigo-500 focus:border-gray-400 transition"
+      class="rounded-md py-2 px-4 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-indigo-500 focus:border-gray-400 transition"
       :class="{
-        'border border-red-300 focus:border-red-400 hover:border-red-400': errorMessages.length > 0,
-        'border border-gray-300 focus:border-gray-400 hover:border-gray-400': errorMessages.length === 0
+        'border border-red-300 focus:border-red-400 hover:border-red-400': errorMessage,
+        'border border-gray-300 focus:border-gray-400 hover:border-gray-400': !errorMessage
       }"
       type="text"
       placeholder="Enter ZIP-code..."
       v-model.trim="zipCodeUS"
     >
-    <button
-      title="search by USA ZIP-codes"
-      type="submit"
-      class="py-2 px-4 rounded-md bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 transition text-white"
-    >
-      search
-    </button>
   </form>
 
   <section>
     <h2
-      v-if="zipCodeUS || visibleCategories.length" class="text-3xl text-center font-bold text-indigo-500"
+      v-if="zipCodeUS || visibleCategories.length || isLoading" class="mt-6 text-3xl text-center font-bold text-indigo-500"
       :class="{ 'mb-6': isLoading || visibleCategories.length }"
     >
       Search Results
@@ -179,7 +176,7 @@
     </div>
   </section>
 
-  <ErrorMessages :errorMessages="errorMessages" :isLoading="isLoading" />
+  <ErrorMessages :errorMessage="errorMessage" :isLoading="isLoading" />
 
   <div class="flex gap-4">
     <button

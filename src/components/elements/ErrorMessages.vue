@@ -1,20 +1,14 @@
 <script lang="ts">
   export default {
-    props: ['errorMessages', 'isLoading']
+    props: ['errorMessage', 'isLoading']
   }
 </script>
 
 <template>
   <Transition name="fade">
-    <ul v-if="errorMessages.length > 0 && !isLoading" class="mb-6 flex flex-col gap-4">
-      <li
-        v-for="error in errorMessages"
-        :key="error"
-        class="text-red-500 px-4 py-1 bg-red-100 rounded-md"
-      >
-        {{ error }}
-      </li>
-    </ul>
+      <p v-if="errorMessage && !isLoading" class="mb-6 text-red-500 px-4 py-1 bg-red-100 rounded-md">
+        {{ errorMessage }}
+      </p>
   </Transition>
 </template>
 
